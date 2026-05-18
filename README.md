@@ -86,9 +86,6 @@ expense/
 
 ## Database
 ### t_users（ユーザーデータ）
-ENGINE=InnoDB  
-CHARSET=utf8mb4  
-
 | Column      | Type         | Null | Key | Default              | Description |
 |-------------|-------------|------|-----|----------------------|------------|
 | id          | INT(11)     | NO   | PK  | AUTO_INCREMENT       | ユーザーID |
@@ -101,9 +98,6 @@ CHARSET=utf8mb4
 | updated_at  | TIMESTAMP   | NO   | -   | CURRENT_TIMESTAMP    | 更新日時 |
 
 ### t_expenses（請求データ）
-ENGINE=InnoDB  
-CHARSET=utf8mb4  
-
 | Column        | Type          | Null | Key | Default           | Description |
 |--------------|--------------|------|-----|------------------|------------|
 | id           | INT(11)      | NO   | PK  | AUTO_INCREMENT   | 申請ID |
@@ -121,9 +115,6 @@ CHARSET=utf8mb4
 | updated_at   | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
 
 ### t_courses（よく使うコース）
-ENGINE=InnoDB  
-CHARSET=utf8mb4  
-
 | Column        | Type          | Null | Key | Default           | Description |
 |--------------|--------------|------|-----|------------------|------------|
 | id           | INT(11)      | NO   | PK  | AUTO_INCREMENT   | コースID |
@@ -140,9 +131,6 @@ CHARSET=utf8mb4
 | updated_at   | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
 
 ### t_mail_recipients（メール宛先データ）
-ENGINE=InnoDB  
-CHARSET=utf8mb4  
-
 | Column      | Type          | Null | Key | Default           | Description |
 |------------|--------------|------|-----|------------------|------------|
 | id         | INT(11)      | NO   | PK  | AUTO_INCREMENT   | メールID |
@@ -153,9 +141,6 @@ CHARSET=utf8mb4
 | updated_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
 
 ### t_routes（路線データ）
-ENGINE=InnoDB  
-CHARSET=utf8mb4  
-
 | Column      | Type          | Null | Key | Default           | Description |
 |------------|--------------|------|-----|------------------|------------|
 | id         | INT(11)      | NO   | PK  | AUTO_INCREMENT   | 路線ID |
@@ -166,9 +151,6 @@ CHARSET=utf8mb4
 | updated_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
 
 ### t_types（種別データ）
-ENGINE=InnoDB  
-CHARSET=utf8mb4  
-
 | Column      | Type          | Null | Key | Default           | Description |
 |------------|--------------|------|-----|------------------|------------|
 | id         | INT(11)      | NO   | PK  | AUTO_INCREMENT   | 種別ID |
@@ -178,7 +160,7 @@ CHARSET=utf8mb4
 | created_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 登録日時 |
 | updated_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
 
-## ER Diagram
+## ER
 ```mermaid
 erDiagram
 
