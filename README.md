@@ -165,66 +165,66 @@ expense/
 erDiagram
 
     t_users {
-        int id
-        varchar name
-        varchar email
-        varchar password
-        tinyint is_admin
-        tinyint is_active
-        timestamp created_at
-        timestamp updated_at
+        id
+        name
+        email
+        password
+        is_admin
+        is_active
+        created_at
+        updated_at
     }
 
     t_expenses {
-        int id
-        int user_id
-        date purchase_date
-        int route_id
-        int type_id
-        varchar section_from
-        varchar section_to
-        int fee
-        varchar note
-        varchar cancel_reason
-        tinyint is_active
-        timestamp created_at
-        timestamp updated_at
+        id
+        user_id
+        purchase_date
+        route_id
+        type_id
+        section_from
+        section_to
+        fee
+        note
+        cancel_reason
+        is_active
+        created_at
+        updated_at
     }
 
     t_courses {
-        int id
-        int user_id
-        varchar course_name
-        int route_id
-        int type_id
-        varchar section_from
-        varchar section_to
-        int fee
-        varchar note
-        tinyint is_active
-        timestamp created_at
-        timestamp updated_at
+        id
+        user_id
+        course_name
+        route_id
+        type_id
+        section_from
+        section_to
+        fee
+        note
+        is_active
+        created_at
+        updated_at
     }
 
     t_routes {
-        int id
-        varchar route_name
-        int sort_order
-        tinyint is_active
+        id
+        route_name
+        sort_order
+        is_active
     }
 
     t_types {
-        int id
-        varchar type_name
-        int sort_order
-        tinyint is_active
+        id
+        type_name
+        sort_order
+        is_active
     }
 
     t_mail_recipients {
-        int id
-        varchar email
-        int sort_order
-        tinyint is_active
+        id
+        email
+        sort_order
+        is_active
     }
 
     t_users ||--o{ t_expenses : ""
