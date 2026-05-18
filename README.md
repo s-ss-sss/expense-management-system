@@ -5,16 +5,16 @@
 ユーザーの申請から管理者のデータ管理を一元管理できる構成でPHP8を用いて開発しています。
 
 ## Demo
-**URL**  
-https://dolzap.conohawing.com/expense/
+**URL**
+- https://dolzap.conohawing.com/expense/
 
 **Demo Account**
 - USER：demo@example.com
 - PASS：demo1234
 
-**Note**  
-デモ環境では一部機能（管理機能・メール送信）に制限があります。  
-データは毎日0時に自動リセットされます。
+**Note**
+- デモ環境では一部機能（管理機能・メール送信）に制限があります
+- データは毎日0時に自動リセットされます
 
 ## Features
 ### User
@@ -84,7 +84,169 @@ expense/
 └── .env                      # 環境変数
 ```
 
-## Table
+## Database
+### t_users（ユーザーデータ）
+ENGINE=InnoDB  
+CHARSET=utf8mb4  
+
+| Column      | Type         | Null | Key | Default              | Description |
+|-------------|-------------|------|-----|----------------------|------------|
+| id          | INT(11)     | NO   | PK  | AUTO_INCREMENT       | ユーザーID |
+| name        | VARCHAR(40) | NO   | -   | -                    | 氏名 |
+| email       | VARCHAR(255)| NO   | UQ  | -                    | メールアドレス |
+| password    | VARCHAR(255)| NO   | -   | -                    | パスワード（ハッシュ化） |
+| is_admin    | TINYINT(1)  | NO   | -   | 0                    | 管理者フラグ |
+| is_active   | TINYINT(1)  | NO   | -   | 1                    | 有効フラグ |
+| created_at  | TIMESTAMP   | NO   | -   | CURRENT_TIMESTAMP    | 登録日時 |
+| updated_at  | TIMESTAMP   | NO   | -   | CURRENT_TIMESTAMP    | 更新日時 |
+
+### t_expenses（請求データ）
+ENGINE=InnoDB  
+CHARSET=utf8mb4  
+
+| Column        | Type          | Null | Key | Default           | Description |
+|--------------|--------------|------|-----|------------------|------------|
+| id           | INT(11)      | NO   | PK  | AUTO_INCREMENT   | 申請ID |
+| user_id      | INT(11)      | NO   | -   | -                | ユーザーID |
+| purchase_date| DATE         | NO   | -   | -                | 購入日 |
+| route_id     | INT(11)      | NO   | -   | -                | 路線ID |
+| type_id      | INT(11)      | NO   | -   | -                | 種別ID |
+| section_from | VARCHAR(40)  | NO   | -   | -                | 区間（始） |
+| section_to   | VARCHAR(40)  | NO   | -   | -                | 区間（終） |
+| fee          | INT(11)      | NO   | -   | -                | 料金 |
+| note         | VARCHAR(100) | YES  | -   | NULL             | 訪問先 |
+| cancel_reason| VARCHAR(255) | YES  | -   | NULL             | 取消理由 |
+| is_active    | TINYINT(1)   | NO   | -   | 1                | 有効フラグ（論理削除） |
+| created_at   | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 登録日時 |
+| updated_at   | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
+
+### t_courses（よく使うコース）
+ENGINE=InnoDB  
+CHARSET=utf8mb4  
+
+| Column        | Type          | Null | Key | Default           | Description |
+|--------------|--------------|------|-----|------------------|------------|
+| id           | INT(11)      | NO   | PK  | AUTO_INCREMENT   | コースID |
+| user_id      | INT(11)      | NO   | -   | -                | ユーザーID |
+| course_name  | VARCHAR(40)  | NO   | -   | -                | コース名 |
+| route_id     | INT(11)      | NO   | -   | -                | 路線ID |
+| type_id      | INT(11)      | NO   | -   | -                | 種別ID |
+| section_from | VARCHAR(40)  | NO   | -   | -                | 区間（始） |
+| section_to   | VARCHAR(40)  | NO   | -   | -                | 区間（終） |
+| fee          | INT(11)      | NO   | -   | -                | 料金 |
+| note         | VARCHAR(100) | YES  | -   | NULL             | 訪問先 |
+| is_active    | TINYINT(1)   | NO   | -   | 1                | 有効フラグ（論理削除） |
+| created_at   | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 登録日時 |
+| updated_at   | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
+
+### t_mail_recipients（メール宛先データ）
+ENGINE=InnoDB  
+CHARSET=utf8mb4  
+
+| Column      | Type          | Null | Key | Default           | Description |
+|------------|--------------|------|-----|------------------|------------|
+| id         | INT(11)      | NO   | PK  | AUTO_INCREMENT   | メールID |
+| email      | VARCHAR(255) | NO   | UQ  | -                | メールアドレス |
+| sort_order | INT(11)      | NO   | -   | -                | 表示順 |
+| is_active  | TINYINT(1)   | NO   | -   | 1                | 有効フラグ（論理削除） |
+| created_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 登録日時 |
+| updated_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
+
+### t_routes（路線データ）
+ENGINE=InnoDB  
+CHARSET=utf8mb4  
+
+| Column      | Type          | Null | Key | Default           | Description |
+|------------|--------------|------|-----|------------------|------------|
+| id         | INT(11)      | NO   | PK  | AUTO_INCREMENT   | 路線ID |
+| route_name | VARCHAR(40)  | NO   | UQ  | -                | 路線名 |
+| sort_order | INT(11)      | NO   | -   | -                | 表示順 |
+| is_active  | TINYINT(1)   | NO   | -   | 1                | 有効フラグ（論理削除） |
+| created_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 登録日時 |
+| updated_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
+
+### t_types（種別データ）
+ENGINE=InnoDB  
+CHARSET=utf8mb4  
+
+| Column      | Type          | Null | Key | Default           | Description |
+|------------|--------------|------|-----|------------------|------------|
+| id         | INT(11)      | NO   | PK  | AUTO_INCREMENT   | 種別ID |
+| type_name  | VARCHAR(40)  | NO   | UQ  | -                | 種別名 |
+| sort_order | INT(11)      | NO   | -   | -                | 表示順 |
+| is_active  | TINYINT(1)   | NO   | -   | 1                | 有効フラグ（論理削除） |
+| created_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 登録日時 |
+| updated_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
+
+## ER
+```mermaid
+erDiagram
+
+    t_users {
+        int id PK
+        varchar name
+        varchar email
+        varchar password
+        tinyint is_admin
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    t_expenses {
+        int id PK
+        int user_id FK
+        date purchase_date
+        int route_id FK
+        int type_id FK
+        varchar section_from
+        varchar section_to
+        int fee
+        varchar note
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    t_courses {
+        int id PK
+        int user_id FK
+        varchar course_name
+        int route_id FK
+        int type_id FK
+        varchar section_from
+        varchar section_to
+        int fee
+        varchar note
+        tinyint is_active
+    }
+
+    t_routes {
+        int id PK
+        varchar route_name
+        int sort_order
+        tinyint is_active
+    }
+
+    t_types {
+        int id PK
+        varchar type_name
+        int sort_order
+        tinyint is_active
+    }
+
+    t_mail_recipients {
+        int id PK
+        varchar email
+        int sort_order
+        tinyint is_active
+    }
+
+    t_users ||--o{ t_expenses : has
+    t_users ||--o{ t_courses : owns
+    t_routes ||--o{ t_expenses : used_by
+    t_routes ||--o{ t_courses : used_by
+    t_types ||--o{ t_expenses : classified_as
+    t_types ||--o{ t_courses : classified_as
+```
 
 ## License
 MIT
