@@ -69,7 +69,7 @@ expense/
 │   └── img/                  # 画像
 ├── lib/
 │   ├── conf/
-│   │   └── Common.conf.php   # DB・定数設定
+│   │   └── Common.conf.php   # 定数設定
 │   ├── sys/
 │   │   ├── controllers/      # コントローラ
 │   │   ├── modules/          # ビジネスロジック / DAO
