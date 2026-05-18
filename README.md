@@ -179,17 +179,12 @@ CHARSET=utf8mb4
 | updated_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
 
 ## ER Diagram
-```mermaid
 erDiagram
 
-    %% =========================
-    %% Core Tables
-    %% =========================
-
     t_users {
-        int id PK
+        int id
         varchar name
-        varchar email UQ
+        varchar email
         varchar password
         tinyint is_admin
         tinyint is_active
@@ -198,11 +193,11 @@ erDiagram
     }
 
     t_expenses {
-        int id PK
-        int user_id FK
+        int id
+        int user_id
         date purchase_date
-        int route_id FK
-        int type_id FK
+        int route_id
+        int type_id
         varchar section_from
         varchar section_to
         int fee
@@ -214,11 +209,11 @@ erDiagram
     }
 
     t_courses {
-        int id PK
-        int user_id FK
+        int id
+        int user_id
         varchar course_name
-        int route_id FK
-        int type_id FK
+        int route_id
+        int type_id
         varchar section_from
         varchar section_to
         int fee
@@ -228,38 +223,26 @@ erDiagram
         timestamp updated_at
     }
 
-    %% =========================
-    %% Master Tables
-    %% =========================
-
     t_routes {
-        int id PK
-        varchar route_name UQ
+        int id
+        varchar route_name
         int sort_order
         tinyint is_active
     }
 
     t_types {
-        int id PK
-        varchar type_name UQ
+        int id
+        varchar type_name
         int sort_order
         tinyint is_active
     }
-
-    %% =========================
-    %% System Setting Table
-    %% =========================
 
     t_mail_recipients {
-        int id PK
-        varchar email UQ
+        int id
+        varchar email
         int sort_order
         tinyint is_active
     }
-
-    %% =========================
-    %% Relationships
-    %% =========================
 
     t_users ||--o{ t_expenses : submits
     t_users ||--o{ t_courses : registers
@@ -269,7 +252,6 @@ erDiagram
 
     t_types ||--o{ t_expenses : classified_as
     t_types ||--o{ t_courses : classified_as
-```
 
 ## License
 MIT
