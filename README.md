@@ -114,7 +114,7 @@ expense/
 | created_at   | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 登録日時 |
 | updated_at   | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
 
-### t_courses（よく使うコース）
+### t_courses（よく使うコースデータ）
 | Column        | Type          | Null | Key | Default           | Description |
 |--------------|--------------|------|-----|------------------|------------|
 | id           | INT(11)      | NO   | PK  | AUTO_INCREMENT   | コースID |
