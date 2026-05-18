@@ -179,6 +179,7 @@ CHARSET=utf8mb4
 | updated_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
 
 ## ER Diagram
+```mermaid
 erDiagram
 
     t_users {
@@ -252,6 +253,7 @@ erDiagram
 
     t_types ||--o{ t_expenses : classified_as
     t_types ||--o{ t_courses : classified_as
+```
 
 ## License
 MIT
