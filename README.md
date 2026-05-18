@@ -42,23 +42,22 @@ https://dolzap.conohawing.com/expense/
 
 
 ## Stack
-### Backend
-![PHP](https://img.shields.io/badge/PHP-8.x-777BB4?logo=php&logoColor=white)
-![Smarty](https://img.shields.io/badge/Smarty-Template%20Engine-orange)
-![ADODB](https://img.shields.io/badge/ADODB-DB%20Abstraction-blue)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
-
 ### Frontend
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?logo=javascript&logoColor=black)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![jQuery](https://img.shields.io/badge/jQuery-0769AD?logo=jquery&logoColor=white)
-![Ajax](https://img.shields.io/badge/Ajax-Async%20Communication-lightgrey)
+
+### Backend
+![PHP](https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white)
+![Smarty](https://img.shields.io/badge/Smarty-orange)
+![ADODB](https://img.shields.io/badge/ADODB-blue)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
 
 ### Infrastructure
 ![Apache](https://img.shields.io/badge/Apache-D22128?logo=apache&logoColor=white)
-![cron](https://img.shields.io/badge/cron-Scheduler-grey)
-![MySQL](https://img.shields.io/badge/MySQL-Database-4479A1?logo=mysql&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
+![cron](https://img.shields.io/badge/cron-grey)
 
 ### Others
 ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
