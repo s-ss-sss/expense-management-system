@@ -245,12 +245,12 @@ erDiagram
         tinyint is_active
     }
 
-    t_users ||--o{ t_expenses
-    t_users ||--o{ t_courses
-    t_routes ||--o{ t_expenses
-    t_routes ||--o{ t_courses
-    t_types ||--o{ t_expenses
-    t_types ||--o{ t_courses
+    t_users ||--o{ t_expenses :
+    t_users ||--o{ t_courses :
+    t_routes ||--o{ t_expenses :
+    t_routes ||--o{ t_courses :
+    t_types ||--o{ t_expenses :
+    t_types ||--o{ t_courses :
 ```
 
 ## License
