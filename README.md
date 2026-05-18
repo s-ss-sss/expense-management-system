@@ -178,16 +178,21 @@ CHARSET=utf8mb4
 | created_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 登録日時 |
 | updated_at | TIMESTAMP    | NO   | -   | CURRENT_TIMESTAMP| 更新日時 |
 
-## ER
+## ER Diagram
 ```mermaid
 erDiagram
+
+    %% =========================
+    %% Core Tables
+    %% =========================
 
     t_users {
         int id PK
         varchar name
-        varchar email
+        varchar email UQ
         varchar password
         tinyint is_admin
+        tinyint is_active
         timestamp created_at
         timestamp updated_at
     }
@@ -202,6 +207,8 @@ erDiagram
         varchar section_to
         int fee
         varchar note
+        varchar cancel_reason
+        tinyint is_active
         timestamp created_at
         timestamp updated_at
     }
@@ -217,33 +224,49 @@ erDiagram
         int fee
         varchar note
         tinyint is_active
+        timestamp created_at
+        timestamp updated_at
     }
+
+    %% =========================
+    %% Master Tables
+    %% =========================
 
     t_routes {
         int id PK
-        varchar route_name
+        varchar route_name UQ
         int sort_order
         tinyint is_active
     }
 
     t_types {
         int id PK
-        varchar type_name
+        varchar type_name UQ
         int sort_order
         tinyint is_active
     }
+
+    %% =========================
+    %% System Setting Table
+    %% =========================
 
     t_mail_recipients {
         int id PK
-        varchar email
+        varchar email UQ
         int sort_order
         tinyint is_active
     }
 
-    t_users ||--o{ t_expenses : has
-    t_users ||--o{ t_courses : owns
+    %% =========================
+    %% Relationships
+    %% =========================
+
+    t_users ||--o{ t_expenses : submits
+    t_users ||--o{ t_courses : registers
+
     t_routes ||--o{ t_expenses : used_by
     t_routes ||--o{ t_courses : used_by
+
     t_types ||--o{ t_expenses : classified_as
     t_types ||--o{ t_courses : classified_as
 ```
